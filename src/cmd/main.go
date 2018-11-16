@@ -6,13 +6,13 @@ import (
 	"mini-serve/route"
 )
 
-// ServerConfigs store mini server config
+// ServerConfigs - store mini server config
 type ServerConfigs struct {
 	Host string
 	Port int
 }
 
-// ToString convert host and port to new format
+// ToString - convert host and port to new format
 func (serverConfigs ServerConfigs) ToString() string {
 	return fmt.Sprintf("%s:%d", serverConfigs.Host, serverConfigs.Port)
 }

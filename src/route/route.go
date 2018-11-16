@@ -6,11 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// NewRoute - create new server with route
 func NewRoute() *gin.Engine {
 	route := gin.Default()
-	route.GET("say", api.ApiHandler)
-	route.POST("say", api.ApiHandler)
-	route.PUT("say", api.ApiHandler)
-	route.DELETE("say", api.ApiHandler)
+	route.GET("say", api.Handler)
+	route.POST("say", api.Handler)
+	route.PUT("say", api.Handler)
+	route.DELETE("say", api.Handler)
 	return route
 }
