@@ -8,11 +8,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ServerConfigs store mini server config
+type ServerConfigs struct {
+	Host string
+	Port int
+}
+
+// ToString convert host and port to new format
+func (serverConfigs ServerConfigs) ToString() string {
+	return fmt.Sprintf("%s:%d", serverConfigs.Host, serverConfigs.Port)
+}
+
 func main() {
-	var host string
-	flag.StringVar(&host, "HOST", "0.0.0.0", "Set binding ip (default: 0.0.0.0)")
-	var port int
-	flag.IntVar(&port, "PORT", 9990, "Set binding port (default: 9990)")
+	var serverConfigs ServerConfigs
+	flag.StringVar(&serverConfigs.Host, "HOST", "0.0.0.0", "Set binding ip")
+	flag.IntVar(&serverConfigs.Port, "PORT", 9990, "Set binding port")
 	flag.Parse()
 
 	route := gin.Default()
@@ -21,5 +31,5 @@ func main() {
 			"ping": "pong",
 		})
 	})
-	route.Run(fmt.Sprintf("%s:%d", host, port))
+	route.Run(serverConfigs.ToString())
 }
